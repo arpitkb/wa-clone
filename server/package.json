@@ -1,11 +1,11 @@
 {
   "name": "wa-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "whatsapp web clone",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server",
-    "start": "node server.js"
+    "start": "node server"
   },
   "keywords": [],
   "author": "",
