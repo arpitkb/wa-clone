@@ -8,7 +8,7 @@ export const useSocket = () => useContext(SocketContext);
 export const SocketProvider = ({ id, children }) => {
   const [socket, setSocket] = useState();
   useEffect(() => {
-    const newSocket = io(window.location.origin, { query: { id } });
+    const newSocket = io("https://wa-clone.vercel.app", { query: { id } });
     setSocket(newSocket);
 
     return () => newSocket.close();
