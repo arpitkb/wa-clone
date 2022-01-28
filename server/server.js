@@ -13,7 +13,6 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
-  console.log("server running and id is ", id);
   socket.join(id);
 
   socket.on("send-message", ({ recipients, text }) => {
@@ -27,10 +26,6 @@ io.on("connection", (socket) => {
       });
     });
   });
-});
-
-app.get("/", (req, res) => {
-  res.send(process.env.NODE_ENV);
 });
 
 // serve static assets in production
