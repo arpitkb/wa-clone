@@ -19,7 +19,7 @@ export const SocketProvider = ({ id, children }) => {
 
     setSocket(newSocket);
 
-    // return () => newSocket.close();
+    return () => newSocket.close();
   }, [id, setSocket]);
 
   return (
