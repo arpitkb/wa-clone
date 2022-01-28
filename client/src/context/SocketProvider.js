@@ -9,7 +9,7 @@ export const SocketProvider = ({ id, children }) => {
   const [socket, setSocket] = useState();
   useEffect(() => {
     const newSocket = io(
-      `http://${window.location.hostname}:${process.env.PORT || 5000}`,
+      `https://${window.location.hostname}:${process.env.PORT || 5000}`,
       {
         query: { id },
       }
