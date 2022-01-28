@@ -11,12 +11,13 @@ const server = createServer(app);
 const io = socketio(server, {
   cors: {
     // allowedHeaders: ["my-custom-header"],
-    origin: "*",
+    // origin: "*",
     methods: ["GET", "POST"],
   },
 });
 
-// const io = new Server({
+// const PORT = process.env.PORT || 5000;
+// const io = new Server(PORT, {
 //   cors: {
 //     origin: "*",
 //     methods: ["GET", "POST"],
@@ -57,5 +58,3 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log("server running");
 });
-
-// io.listen(PORT);

@@ -9,7 +9,9 @@ export const SocketProvider = ({ id, children }) => {
   const [socket, setSocket] = useState();
   useEffect(() => {
     const newSocket = io(
-      process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000",
+      process.env.NODE_ENV === "production"
+        ? window.location.origin
+        : "http://localhost:5000",
       {
         query: { id },
       }
