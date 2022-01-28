@@ -2,17 +2,19 @@ const { createServer } = require("http");
 const express = require("express");
 const { Server } = require("socket.io");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    allowedHeaders: ["my-custom-header"],
-    origins: ["https://wa-clone.vercel.app"],
+    // allowedHeaders: ["my-custom-header"],
+    origin: "*",
     methods: ["GET", "POST"],
-    credentials: true,
   },
 });
+
+app.use(cors());
 
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
