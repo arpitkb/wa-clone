@@ -1,12 +1,12 @@
 const { createServer } = require("http");
 const express = require("express");
-const { Server } = require("socket.io");
+const socketio = require("socket.io");
 const path = require("path");
 const cors = require("cors");
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server, {
+const io = socketio(server, {
   cors: {
     // allowedHeaders: ["my-custom-header"],
     origin: "*",
@@ -15,6 +15,12 @@ const io = new Server(server, {
 });
 
 app.use(cors());
+
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log("server running");
+});
 
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
@@ -42,9 +48,3 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   });
 }
-
-const PORT = process.env.PORT || 5000;
-
-server.listen(PORT, () => {
-  console.log("server running");
-});
