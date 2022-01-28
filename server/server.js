@@ -1,29 +1,29 @@
-// const { createServer } = require("http");
-// const express = require("express");
-// const socketio = require("socket.io");
-// const path = require("path");
-// const cors = require("cors");
+const { createServer } = require("http");
+const express = require("express");
+const socketio = require("socket.io");
+const path = require("path");
+const cors = require("cors");
 
-const { Server } = require("socket.io");
+// const { Server } = require("socket.io");
 
-// const app = express();
-// const server = createServer(app);
-// const io = socketio(server, {
-//   cors: {
-//     // allowedHeaders: ["my-custom-header"],
-//     origin: "*",
-//     methods: ["GET", "POST"],
-//   },
-// });
-
-const io = new Server({
+const app = express();
+const server = createServer(app);
+const io = socketio(server, {
   cors: {
+    // allowedHeaders: ["my-custom-header"],
     origin: "*",
     methods: ["GET", "POST"],
   },
 });
 
-// app.use(cors());
+// const io = new Server({
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+app.use(cors());
 
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
@@ -54,8 +54,8 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 5000;
 
-// server.listen(PORT, () => {
-//   console.log("server running");
-// });
+server.listen(PORT, () => {
+  console.log("server running");
+});
 
-io.listen(PORT);
+// io.listen(PORT);
