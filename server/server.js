@@ -8,7 +8,7 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     allowedHeaders: ["my-custom-header"],
-    origins: ["https://localhost:5000"],
+    origins: ["https://wa-clone.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
   },
