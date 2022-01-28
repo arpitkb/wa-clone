@@ -9,7 +9,9 @@ export const SocketProvider = ({ id, children }) => {
   const [socket, setSocket] = useState();
   useEffect(() => {
     const newSocket = io(
-      `https://${window.location.hostname}:${process.env.PORT || 5000}`,
+      process.env.NODE_ENV === "production"
+        ? window.location.href
+        : "http://localhost:5000",
       {
         query: { id },
       }
@@ -17,7 +19,7 @@ export const SocketProvider = ({ id, children }) => {
 
     setSocket(newSocket);
 
-    return () => newSocket.close();
+    // return () => newSocket.close();
   }, [id, setSocket]);
 
   return (
